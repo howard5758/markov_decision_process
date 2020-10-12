@@ -18,4 +18,5 @@ $python RunMDP.py --gemma --noise --epsilon
 
 - To run and check (no visualization yet! Sorry!) MDP result with C++:
 $g++ -I EIGEN_PATH RunMDP.cpp GridWorldMDP.cpp -o TEST_NAME
+
 Then run executable.
