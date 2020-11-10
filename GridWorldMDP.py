@@ -6,35 +6,6 @@ import matplotlib.patches as patches
 
 
 class GridWorldMDP(object):
-    # Construct an GridWorld representation of the form
-    #
-    #  20  21  22  23  24
-    #  15   x  17  18  19
-    #  10   x  12   x  14
-    #   5   6   7   8   9
-    #   0   1   2   3   4
-    #
-    # The position marked with x is an obstacle. States 0, 1, 2, 3,
-    # and 4 are absorbing states with negative reward (e.g., cliffs)
-    # and states 12 and 14 are absorbing states with positive reward.
-    # We model these states by adding a final state 25 to which the
-    # absorbing states transition.
-    #
-    # with the following variables
-    #
-    #    T:       A 24x24x4 array where T[i,j,k] is the likelihood
-    #             of transitioning from state i to state j when taking
-    #             action A[k]
-    #
-    #    R:       A 24x24x4 array where R[i,j,k] expresses the
-    #             reward received when going from state i to state j
-    #             via action A[k]
-    #
-    #    A:       A list of actions A = [N=0, E=1, S=2, W=3]
-    #
-    #    noise:   The likelihood that the action is incorrect
-    #
-    #    gamma:   The discount factor
 
     def __init__(self, noise=0.2, gamma=0.9):
 
@@ -351,20 +322,6 @@ class GridWorldMDP(object):
         pyplot.show()
 
     def valueIteration(self, epsilon):
-    # Perform value iteration with the following variables
-    #
-    # INPUT:
-    #    epsilon:  The threshold for the stopping criterion
-    #
-    #         |Vnew - Vprev|_inf <= epsilon
-    #
-    #    where |x|_inf is the infinity norm (i.e., max(abs(V[i])) over all i)
-    #
-    #      gamma:  The discount factor
-    #
-    # OUTPUT:
-    #          V: The value of each state encoded as a 12x1 array
-    #         Pi: The action associated with each state (the policy) encoded as a 12x1 array
 
         # Your function should populate the following arrays
         V = np.zeros([self.numstates])  # Value function
