@@ -53,7 +53,7 @@ GridWorldMDP::GridWorldMDP(){}
 void GridWorldMDP::init(const float noise, const float gamma){
 	this->noise = noise;
 	this->gamma = gamma;
-
+	// Set up states!
 	vector<string> A;
 	A.push_back("N");
 	A.push_back("E");
