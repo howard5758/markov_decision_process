@@ -45,6 +45,20 @@ public:
 	GridWorldMDP();
 	void init(const float noise, const float gamma);
 	void valueIteration(const float epsilon);
+	    // Perform value iteration with the following variables
+	    //
+	    // INPUT:
+	    //    epsilon:  The threshold for the stopping criterion
+	    //
+	    //         |Vnew - Vprev|_inf <= epsilon
+	    //
+	    //    where |x|_inf is the infinity norm (i.e., max(abs(V[i])) over all i)
+	    //
+	    //      gamma:  The discount factor
+	    //
+	    // OUTPUT:
+	    //          V: The value of each state encoded as a 12x1 array
+	    //         Pi: The action associated with each state (the policy) encoded as a 12x1 array
 
 private:
 	float noise, gamma, epsilon;
