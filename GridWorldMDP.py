@@ -4,7 +4,6 @@ import matplotlib.pyplot as pyplot
 from matplotlib.path import Path
 import matplotlib.patches as patches
 
-
 class GridWorldMDP(object):
 
     def __init__(self, noise=0.2, gamma=0.9):
@@ -20,8 +19,6 @@ class GridWorldMDP(object):
         self.absorbing_states = [0,1,2,3,4,12,14]
         obstacles = [11,13,16]
 
-
-
         # The transition matrix
         self.T = np.zeros([self.numstates,self.numstates,4])
 
@@ -30,7 +27,6 @@ class GridWorldMDP(object):
             self.T[i,25,1] = 1;
             self.T[i,25,2] = 1;
             self.T[i,25,3] = 1;
-
 
         for i in obstacles:
             self.T[i,i,0] = 1;
@@ -41,7 +37,6 @@ class GridWorldMDP(object):
         for a in range(0,4):
             self.T[25,25,a] = 1.0
 
-
         # Nominally set the transition likelihoods
         for i in range(0,self.width*self.height):
 
@@ -51,7 +46,6 @@ class GridWorldMDP(object):
 
             if i in obstacles:
                 continue
-
 
             # Are we bounded above, below, left, or right by a
             # boundary or an obstacle
@@ -90,9 +84,6 @@ class GridWorldMDP(object):
             else:
                 self.T[i,i+1,a] = noise/2
 
-
-
-
             # East
             a = 1
 
@@ -110,7 +101,6 @@ class GridWorldMDP(object):
                 self.T[i,i,a] += noise/2
             else:
                 self.T[i,i-self.width,a] = noise/2
-
 
             # South
             a = 2
@@ -130,7 +120,6 @@ class GridWorldMDP(object):
             else:
                 self.T[i,i+1,a] = noise/2
 
-
             # West
             a = 3
 
@@ -149,14 +138,8 @@ class GridWorldMDP(object):
             else:
                 self.T[i,i-self.width,a] = noise/2
 
-
-
-
-
-
         # The rewards
         self.R = np.zeros([self.numstates,self.numstates,4])
-
 
         # Rewards are received when taking any action in the absorbing state
         for i in range(0,5):
@@ -188,7 +171,6 @@ class GridWorldMDP(object):
         for i in range(self.width+1):
             ax.plot([i*size,i*size],[0,self.height*size],'k-')
 
-
         # Draw the obstacles
         verts = [
             (1.*size,2.*size),
@@ -210,7 +192,6 @@ class GridWorldMDP(object):
         patch = patches.PathPatch(path, facecolor='black', lw=1)
         ax.add_patch(patch)
 
-
         verts = [
             (1.*size,3.*size),
             (1.*size,4.*size),
@@ -224,7 +205,6 @@ class GridWorldMDP(object):
         patch = patches.PathPatch(path, facecolor='black', lw=1)
         ax.add_patch(patch)
 
-
         verts = [
             (3.*size,1.*size),
             (3.*size,2.*size),
@@ -234,7 +214,6 @@ class GridWorldMDP(object):
         ]
 
         path = Path(verts, codes)
-
 
         for i in range(0,5):
             verts = [
@@ -250,7 +229,6 @@ class GridWorldMDP(object):
             patch = patches.PathPatch(path, facecolor='red', lw=1)
             ax.add_patch(patch)
 
-
         verts = [
             (3.*size,2.*size),
             (3.*size,3.*size),
@@ -261,10 +239,8 @@ class GridWorldMDP(object):
 
         path = Path(verts, codes)
 
-
         patch = patches.PathPatch(path, facecolor='black', lw=2)
         ax.add_patch(patch)
-
 
         # Draw the goal regions
         verts = [
@@ -277,10 +253,8 @@ class GridWorldMDP(object):
 
         path = Path(verts, codes)
 
-
         patch = patches.PathPatch(path, facecolor='green', lw=2)
         ax.add_patch(patch)
-
 
         verts = [
             (4.*size,2.*size),
@@ -292,10 +266,8 @@ class GridWorldMDP(object):
 
         path = Path(verts, codes)
 
-
         patch = patches.PathPatch(path, facecolor='green', lw=2)
         ax.add_patch(patch)
-
 
         # Draw the value function (-1 because of the auxiliary state)
         for k in range(0,len(V)-1):
@@ -317,7 +289,6 @@ class GridWorldMDP(object):
 
             if Pi[k] == 3:
                 ax.arrow ((i+0.3)*size, (j+0.5)*size, -0.15*size, 0.0, head_width=0.1*size, head_length=0.1*size, fc='k', ec='k')
-
 
         pyplot.show()
 
