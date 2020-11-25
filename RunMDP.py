@@ -21,6 +21,9 @@ if __name__ == '__main__':
     print ("Converged in %d iterations" % (n))
 
     mdp.drawWorld(V,Pi)
+    
+    
+    
 
     
 
